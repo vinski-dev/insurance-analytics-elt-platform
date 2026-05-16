@@ -1,0 +1,53 @@
+version: 2
+
+sources:
+  - name: raw
+    database: INSURANCE_DW
+    schema: RAW
+    tables:
+      - name: claims_raw
+        description: "Append-only raw insurance claims loaded by Python ingestion."
+
+models:
+  - name: stg_claims
+    description: "Cleaned and typed claims from raw."
+    columns:
+      - name: claim_id
+        tests:
+          - not_null
+      - name: claim_amount
+        tests:
+          - not_null
+      - name: claim_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['PENDING', 'APPROVED', 'REJECTED', 'CLOSED']
+
+  - name: int_claims_latest
+    description: "Latest valid claim record per claim_id."
+    columns:
+      - name: claim_id
+        tests:
+          - not_null
+          - unique
+
+  - name: fct_claims
+    description: "Business-ready claim fact table. One row per claim."
+    columns:
+      - name: claim_id
+        tests:
+          - not_null
+          - unique
+
+  - name: mart_claims_daily_kpi
+    description: "Daily claims KPI mart."
+
+  - name: mart_customer_claims_kpi
+    description: "Customer-level claims KPI mart."
+
+  - name: mart_policy_claims_kpi
+    description: "Policy-level claims KPI mart."
+
+  - name: mart_executive_claims_summary
+    description: "Executive-level claims summary."

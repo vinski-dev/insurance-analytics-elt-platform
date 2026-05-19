@@ -1,0 +1,26 @@
+# models/staging/sources.yml
+
+
+# models/staging/sources.yml
+
+version: 2
+
+sources:
+  - name: raw
+    database: INSURANCE_DW
+    schema: RAW
+    config:
+      loaded_at_field: ingestion_time
+      freshness:
+        warn_after:
+          count: 3
+          period: day
+        error_after:
+          count: 14
+          period: day
+
+    tables:
+      - name: claims_raw
+      - name: policies_raw
+      - name: customers_raw
+      - name: payments_raw

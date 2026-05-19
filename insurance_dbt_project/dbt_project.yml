@@ -14,11 +14,8 @@ seeds:
   insurance_dbt_project:
     +schema: analytics
 
-models:
-  jaffle_shop:
-    +static_analysis: strict
-    # Materialize staging models as views, and marts as tables
-    staging:
-      +materialized: view
-    marts:
-      +materialized: table
+vars:
+  backfill_start_date: '2024-01-01'
+  lookback_days: 7
+ 
+  

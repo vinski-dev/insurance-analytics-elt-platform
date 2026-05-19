@@ -1,13 +1,5 @@
 version: 2
 
-sources:
-  - name: raw
-    database: INSURANCE_DW
-    schema: RAW
-    tables:
-      - name: claims_raw
-        description: "Append-only raw insurance claims loaded by Python ingestion."
-
 models:
   - name: stg_claims
     description: "Cleaned and typed claims from raw."

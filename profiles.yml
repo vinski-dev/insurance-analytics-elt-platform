@@ -1,0 +1,18 @@
+user:
+  outputs:
+    default:
+      account: jcrzlkr-hk55509
+      auth_type: password
+      client_session_keep_alive: false
+      connect_retries: 3
+      connect_timeout: 30
+      database: INSURANCE_DW
+      password: 14mysymHusky1502024
+      retry_on_database_errors: true
+      role: null
+      schema: dbt_apaano
+      threads: 6
+      type: snowflake
+      user: vinskidev
+      warehouse: COMPUTE_WH
+  target: default

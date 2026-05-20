@@ -85,4 +85,7 @@ insurance-analytics-elt-platform/
 ├── diagrams/
 ├── README.md
 ```
+```text
 Airflow was added as an orchestration layer to schedule and monitor the ELT workflow. The DAG runs Python ingestion first, then executes dbt transformations, then runs dbt tests. This ensures downstream analytics models only run after validated data is loaded successfully.
+```
+
